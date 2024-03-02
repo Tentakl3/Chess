@@ -12,7 +12,9 @@ class Pawn:
 
     def valid_move(self, new_pos, board):
         if new_pos[0] != None:
-            if self.moves < 1:
+            if self.pos[1] == new_pos[1] and self.pos[0] == new_pos[0]:
+                return False
+            elif self.moves < 1:
                 if self.pos[1] == new_pos[1]:
                     if self.color == 'white':
 

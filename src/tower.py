@@ -12,22 +12,40 @@ class Tower:
 
     def valid_move(self, new_pos, board):
         if new_pos[0] != None:
-            if self.pos[1] == new_pos[1]:
-                if 0 < abs(self.pos[0] - new_pos[0]) <= 7:
-                    if board[new_pos[0]][new_pos[1]] == None: 
-                        self.update_moves()
-                        self.update_pos(new_pos)
-                        return True
-                    else:
-                        return False
-            if self.pos[0] == new_pos[0]:
-                if 0 < abs(self.pos[1] - new_pos[1]) <= 7:
-                    if board[new_pos[0]][new_pos[1]] == None: 
-                        self.update_moves()
-                        self.update_pos(new_pos)
-                        return True
-                    else:
-                        return False
+            l = 0
+            r = 7
+            if self.pos[1] == new_pos[1] and self.pos[0] == new_pos[0]:
+                return False
+            elif self.pos[1] == new_pos[1]:
+                for i in range (0,self.pos[0]):
+                    if board[i][self.pos[1]] != None:
+                        l = i
+                for j in range (7,self.pos[0],-1):
+                    if board[j][self.pos[1]] != None:
+                        r = j
+                if l <= new_pos[0] <= r:
+                    self.update_moves()
+                    self.update_pos(new_pos)
+                    return True
+                else:
+                    return False
+            elif self.pos[0] == new_pos[0]:
+                l = 0
+                r = 7
+                for i in range (0,self.pos[1]):
+                    if board[self.pos[0]][i] != None:
+                        l = i
+                for j in range (7,self.pos[1],-1):
+                    if board[self.pos[0]][j] != None:
+                        r = j
+                if l <= new_pos[1] <= r:
+                    self.update_moves()
+                    self.update_pos(new_pos)
+                    return True
+                else:
+                    return False
+            else:
+                return False
         else:
             return False
 
