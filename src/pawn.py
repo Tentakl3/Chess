@@ -45,21 +45,25 @@ class Pawn:
 
                         if 0 < (self.pos[0] - new_pos[0]) <= 1:
                                 if board[new_pos[0]][new_pos[1]] != None:
-                                    self.update_moves()
-                                    self.update_pos(new_pos)
-                                    return True
+                                    if self.color == board[new_pos[0]][new_pos[1]].color:
+                                        return False
+                                    else:
+                                        self.update_moves()
+                                        self.update_pos(new_pos)
+                                        return True
                                 else:
                                     return False
-                        else:
-                            return False
-                        
+                                
                     else:
 
                         if 0 > (self.pos[0] - new_pos[0]) >= -1:
                                 if board[new_pos[0]][new_pos[1]] != None:
-                                    self.update_moves()
-                                    self.update_pos(new_pos)
-                                    return True
+                                    if self.color == board[new_pos[0]][new_pos[1]].color:
+                                        return False
+                                    else:
+                                        self.update_moves()
+                                        self.update_pos(new_pos)
+                                        return True
                                 else:
                                     return False
                         else:
@@ -100,9 +104,12 @@ class Pawn:
 
                         if (self.pos[0] - new_pos[0]) == 1:
                                 if board[new_pos[0]][new_pos[1]] != None:
-                                    self.update_moves()
-                                    self.update_pos(new_pos)
-                                    return True
+                                    if self.color == board[new_pos[0]][new_pos[1]].color:
+                                        return False
+                                    else:
+                                        self.update_moves()
+                                        self.update_pos(new_pos)
+                                        return True
                                 else:
                                     return False
                         else:
@@ -112,9 +119,12 @@ class Pawn:
 
                         if (self.pos[0] - new_pos[0]) == -1:
                                 if board[new_pos[0]][new_pos[1]] != None:
-                                    self.update_moves()
-                                    self.update_pos(new_pos)
-                                    return True
+                                    if self.color == board[new_pos[0]][new_pos[1]].color:
+                                        return False
+                                    else:
+                                        self.update_moves()
+                                        self.update_pos(new_pos)
+                                        return True
                                 else:
                                     return False
                         else:

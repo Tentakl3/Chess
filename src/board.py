@@ -3,6 +3,10 @@ import pygame
 from settings import Settings
 from pawn import Pawn
 from tower import Tower
+from horse import Horse
+from bishop import Bishop
+from queen import Queen
+from king import King
 
 class Board:
 
@@ -36,27 +40,32 @@ class Board:
         
         board[7][0] = Tower('white', [7,0])
         board[7][7] = Tower('white', [7,7])
-        """
-        board[7][1] = ('white', 'horse')
-        board[7][6] = ('white', 'horse')
 
-        board[7][2] = ('white', 'bishop')
-        board[7][5] = ('white', 'bishop')
+        board[7][1] = Horse('white', [7,1])
+        board[7][6] = Horse('white', [7,6])
 
-        board[7][3] = ('white', 'queen')
-        """
+        
+        board[7][2] = Bishop('white', [7,2])
+        board[7][5] = Bishop('white', [7,5])
+
+        board[7][3] = Queen('white', [7,3])
+
+        board[7][4] = King('white', [7,4])
+
 
         board[0][0] = Tower('black', [0,0])
         board[0][7] = Tower('black', [0,7])
-        """
-        board[0][1] = ('black', 'horse')
-        board[0][6] = ('black', 'horse')
 
-        board[0][2] = ('black', 'bishop')
-        board[0][5] = ('black', 'bishop')
+        board[0][1] = Horse('black', [0,1])
+        board[0][6] = Horse('black', [0,6])
 
-        board[0][3] = ('black', 'queen')
-        """
+        board[0][2] = Bishop('black', [0,2])
+        board[0][5] = Bishop('black', [0,5])
+
+        board[0][3] = Queen('black', [0,3])
+
+        board[0][4] = King('black', [0,4])
+ 
 
         return board
     

@@ -12,6 +12,8 @@ class Chess:
         self.settings = Settings()
         self.board = Board()
         self.drag = Drag()
+        self.players = ['black', 'white']
+        self.switch = True
 
         self.clock = pygame.time.Clock()
         self.screen = pygame.display.set_mode((self.settings.screen_width,self.settings.screen_height))
@@ -47,16 +49,26 @@ class Chess:
                 if self.drop_pos:
                     piece, old_x, old_y = self.selected_piece
                     new_x, new_y, = self.drop_pos
-                    if self.selected_piece[0].valid_move([new_y, new_x], self.chess_board): 
-                        if self.chess_board[new_y][new_x] == None:
-                            self.chess_board[old_y][old_x] = None
-                            self.chess_board[new_y][new_x] = piece
-                        else:
-                            if self.chess_board[old_y][old_x].color != self.chess_board[new_y][new_x].color:
+                    if self.switch:
+                        if self.selected_piece[0].color == 'white':
+                            if self.selected_piece[0].valid_move([new_y, new_x], self.chess_board):
+                                self.switch = False
                                 self.chess_board[old_y][old_x] = None
                                 self.chess_board[new_y][new_x] = piece
                             else: 
                                 self.chess_board[old_y][old_x] = piece
+                        else:
+                            self.chess_board[old_y][old_x] = piece
+                    else:
+                        if self.selected_piece[0].color == 'black':
+                            if self.selected_piece[0].valid_move([new_y, new_x], self.chess_board):
+                                self.switch = True
+                                self.chess_board[old_y][old_x] = None
+                                self.chess_board[new_y][new_x] = piece
+                            else: 
+                                self.chess_board[old_y][old_x] = piece
+                        else:
+                            self.chess_board[old_y][old_x] = piece
 
                 self.selected_piece = None
                 self.drop_pos = None
