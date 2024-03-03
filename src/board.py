@@ -76,7 +76,7 @@ class Board:
                 if piece:
                     ficha = piece.sprite
                     s1 = pygame.image.load(f'images/{ficha}')
-                    pos = pygame.Rect(self.settings.board_pos[0] + x * self.settings.tilesize+1, self.settings.board_pos[1] + y * self.settings.tilesize + 1, self.settings.tilesize, self.settings.tilesize)
+                    pos = pygame.Rect(self.settings.board_pos[0] + x * self.settings.tilesize + 1, self.settings.board_pos[1] + y * self.settings.tilesize + 1, self.settings.tilesize, self.settings.tilesize)
                     screen.blit(s1, s1.get_rect(center=pos.center))
 
     def draw_selector(self, screen, piece, x, y):
