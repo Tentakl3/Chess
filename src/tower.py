@@ -3,7 +3,8 @@ import pygame
 class Tower:
     def __init__(self, color, pos):
         self.color = color
-        self.sprite = color + "_tower.png"
+        self.type = 'tower'
+        self.sprite = color + f"_{self.type}.png"
         self.pos = pos 
         self.moves = 0
 
@@ -54,10 +55,46 @@ class Tower:
                             self.update_moves()
                             self.update_pos(new_pos)
                             return True
+                               
+                    elif board[new_pos[0]][new_pos[1] - 1] != None:
+                        if board[new_pos[0]][new_pos[1] - 1].type == 'king':
+                            print('H')
+                            if self.color == board[new_pos[0]][new_pos[1] - 1].color:
+                                if self.moves < 1 and board[new_pos[0]][new_pos[1] - 1].moves < 1:
+                                    piece = board[new_pos[0]][new_pos[1] - 1]
+                                    board[new_pos[0]][new_pos[1] - 1].update_moves()
+                                    board[new_pos[0]][new_pos[1] - 1].update_pos([new_pos[0], new_pos[1] + 1])
+                                    board[new_pos[0]][new_pos[1] + 1] = piece
+                                    board[new_pos[0]][new_pos[1] - 1] = None
+                                    self.update_moves()
+                                    self.update_pos(new_pos)
+                                    return True
+                        else:
+                            self.update_moves()
+                            self.update_pos(new_pos)
+                            return True
+                                
+                    elif board[new_pos[0]][new_pos[1] + 1] != None:
+                        if board[new_pos[0]][new_pos[1] + 1].type == 'king':
+                            print('A')
+                            if self.color == board[new_pos[0]][new_pos[1] + 1].color:
+                                if self.moves < 1 and board[new_pos[0]][new_pos[1] + 1].moves < 1:
+                                    piece = board[new_pos[0]][new_pos[1] + 1]
+                                    board[new_pos[0]][new_pos[1] + 1].update_moves()
+                                    board[new_pos[0]][new_pos[1] + 1].update_pos([new_pos[0], new_pos[1] - 1])
+                                    board[new_pos[0]][new_pos[1] - 1] = piece
+                                    board[new_pos[0]][new_pos[1] + 1] = None
+                                    self.update_moves()
+                                    self.update_pos(new_pos)
+                                    return True
+                        else:
+                            self.update_moves()
+                            self.update_pos(new_pos)
+                            return True                         
                     else:
                         self.update_moves()
                         self.update_pos(new_pos)
-                        return True
+                        return True                    
                 else:
                     return False
             else:

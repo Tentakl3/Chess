@@ -3,7 +3,8 @@ import pygame
 class Pawn:
     def __init__(self, color, pos):
         self.color = color
-        self.sprite = color + "_pawn.png"
+        self.type = 'pawn'
+        self.sprite = color + f"_{self.type}.png"
         self.pos = pos 
         self.moves = 0
 

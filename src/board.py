@@ -13,13 +13,13 @@ class Board:
     def __init__(self):
         self.settings = Settings()
 
-    def create_board_surf(self):
+    def create_board_surf(self, i):
         board_surf = pygame.Surface((self.settings.tilesize*8, self.settings.tilesize*8))
         dark = False
         for y in range(8):
             for x in range(8):
                 rect = pygame.Rect(x*self.settings.tilesize, y*self.settings.tilesize, self.settings.tilesize, self.settings.tilesize)
-                pygame.draw.rect(board_surf, pygame.Color('black' if dark else 'white'), rect)
+                pygame.draw.rect(board_surf, pygame.Color(self.settings.style[i][0] if dark else self.settings.style[i][1]), rect)
                 dark = not dark
             dark = not dark
 
@@ -76,6 +76,7 @@ class Board:
                 if piece:
                     ficha = piece.sprite
                     s1 = pygame.image.load(f'images/{ficha}')
+                    s1 = pygame.transform.scale(s1, (self.settings.tilesize, self.settings.tilesize))
                     pos = pygame.Rect(self.settings.board_pos[0] + x * self.settings.tilesize + 1, self.settings.board_pos[1] + y * self.settings.tilesize + 1, self.settings.tilesize, self.settings.tilesize)
                     screen.blit(s1, s1.get_rect(center=pos.center))
 

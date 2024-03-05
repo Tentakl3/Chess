@@ -3,7 +3,8 @@ import pygame
 class Queen:
     def __init__(self, color, pos):
         self.color = color
-        self.sprite = color + "_queen.png"
+        self.type = 'queen'
+        self.sprite = color + f"_{self.type}.png"
         self.pos = pos 
         self.moves = 0
 

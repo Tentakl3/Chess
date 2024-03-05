@@ -3,7 +3,8 @@ import pygame
 class Horse:
     def __init__(self, color, pos):
         self.color = color
-        self.sprite = color + "_horse.png"
+        self.type = 'horse'
+        self.sprite = color + f"_{self.type}.png"
         self.pos = pos 
         self.moves = 0
 
