@@ -19,6 +19,7 @@ class Chess:
         self.switch = True
         self.winner = ''
         self.i = 0
+        self.bg = pygame.image.load("images/temp_background.png")
 
         self.clock = pygame.time.Clock()
         self.screen = pygame.display.set_mode((self.settings.screen_width,self.settings.screen_height))
@@ -27,6 +28,7 @@ class Chess:
 
         pygame.display.set_caption("Chess")
         self.start_button = Button(400, 400, 'start', 1)
+        self.off_button = Button(400, 600, 'off', 1)
 
         self.start_window = True
         self.play_window = False
@@ -43,12 +45,16 @@ class Chess:
             self.screen.fill(pygame.Color(self.settings.bg_color))
          
             if self.play_window:
+                self.screen.blit(self.bg, (0, 0))
                 self.screen.blit(self.chess_board_surf, self.settings.board_pos)
                 self.board.draw_pieces(self.screen, self.chess_board)
                 self.board.draw_selector(self.screen, piece, x, y)
                 self.drop_pos = self.drag.draw_drag(self.screen, self.selected_piece, self.chess_board)
             elif self.start_window:
+                self.screen.blit(self.bg, (0, 0))
                 self.start_button.draw_button(self.screen)
+                self.off_button.draw_button(self.screen)
+                
                 
             pygame.display.flip()
             self.clock.tick(60)
@@ -80,6 +86,9 @@ class Chess:
         
                         self.start_window = False
                         self.play_window = True
+                if self.off_button.rect.collidepoint(mouse_pos):
+                    if event.type == pygame.MOUSEBUTTONDOWN:
+                        sys.exit()
                         
             elif self.play_window:
                 if event.type == pygame.MOUSEBUTTONDOWN:
